@@ -27,16 +27,16 @@ Global Styles
   padding: 0;
 }
 body {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   background-color: var(--Light-Gray);
-  height: 100vh;
+  padding: 3rem 2rem 5rem 2rem;
   font: 16px Karla, sans-serif; /*font-family & font-size */
 }
 main {
-  width: 40em;
+  width: 20em;
   height: auto;
   margin: auto;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -51,56 +51,63 @@ Card Styles
 */
 .section-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 14em 16em;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
   transition: 0.7s ease;
 }
 .top-section {
-  grid-column: 1/3;
   background-color: white;
-  padding-left: 5em;
-  height: 14em;
-  width: 100%;
+  padding: 2em 0.2em 0 1.5em;
+  height: 17em;
 }
-.left-section {
-  grid-column: 1/2;
+.left-section,
+.right-section {
   grid-column-start: 1;
   grid-column-end: 2;
+  padding: 0.5em 1.5em;
+}
+.left-section {
   background-color: var(--Cyan);
-  width: 100%;
 }
 .right-section {
-  grid-column: 1/2;
-  grid-column-start: 2;
-  grid-column-end: 3;
   background-color: var(--Cyan);
-  width: 100%;
   opacity: 0.8;
 }
 .top-section p {
-  font-size: 1em;
-  margin: 0.7em 2em 0 0;
+  font-size: 0.9em;
+  margin: 1em 1.2em 0 0;
   color: var(--Grayish-Blue);
-  line-height: 1.5em;
+  line-height: 1.7em;
   opacity: 0.7;
 }
-.left-section,
-.right-section,
-.top-section {
-  padding: 1em 0 0 2.5em;
+.right-section ul {
+  margin-bottom: 1.5em;
+  margin-top: 1.5em;
 }
 h1 {
   color: var(--Cyan);
-  font-size: 1.6em;
-  margin: 1em 0;
+  font-size: 1.3em;
 }
 h2 {
   color: var(--Bright-Yellow);
-  font-size: 1.2em;
+  font-size: 0.9em;
+  margin-top: 2em;
+  margin-right: 1em;
 }
 h3 {
   font: 400 1.3em; /*font-weight & font-size */
+
+  /* font-size: 1.2em; */
   padding-top: 1em;
+}
+p {
+  line-height: 1.4em;
+}
+button {
+  width: 100%;
+  margin: 2em 0 1.2em 0;
+  font-size: 1em;
+  height: 3.3em;
 }
 span {
   font-size: 2em;
@@ -109,16 +116,17 @@ button {
   background-color: var(--Bright-Yellow);
   border: none;
   border-radius: 0.3em;
-  width: 18em;
+  width: 100%;
   height: 3.5em;
   cursor: pointer;
   box-shadow: rgb(107, 113, 119) 0px 10px 30px -10px;
   margin-top: 2em;
-  transition: background-color 400ms, color 300ms;
+  transition: background-color 400ms, color 300ms, transform 500ms;
 }
 button:hover {
   background-color: white;
   color: var(--Bright-Yellow);
+  transform: scale(1.01);
 }
 h3,
 span,
@@ -134,9 +142,6 @@ li {
   line-height: 1.5em;
   opacity: 0.9;
   font-size: 0.9em;
-}
-.right-section ul {
-  margin-top: 1em;
 }
 .left-section p {
   margin-top: 1.5em;
@@ -164,11 +169,10 @@ Footer Styles
 ===============
 */
 footer {
-  justify-self: center;
+  flex: none;
+  bottom: 0px;
+  position: absolute;
   text-align: center;
-  font-size: 0.7em;
-  line-height: 1em;
-  margin-bottom: 0.5em;
 }
 .attribution,
 a {
@@ -196,61 +200,58 @@ a:active {
 Responsive Styles
 ==================
 */
-@media all and (max-width: 900px) {
+@media (min-width: 750px) {
   main {
-    max-width: 20em;
-    height: 100%;
+    width: 40em;
   }
   .section-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    transition: 0.7s ease;
+    grid-template-columns: repeat(
+      2,
+      minmax(0, 1fr)
+    ); /*The columns to be the exact same width*/
+    grid-template-areas:
+      'community community'
+      'monthly why-us';
   }
   .top-section {
-    padding: 0.5em 1em 0 1.5em;
-    height: 17em;
+    grid-area: community;
+    height: 14em;
+  }
+  .left-section {
+    grid-area: monthly;
+  }
+  .right-section {
+    grid-area: why-us;
   }
   .left-section,
   .right-section {
-    grid-column-start: 1;
-    grid-column-end: 2;
-    padding: 0.5em 1.5em;
+    padding: 1em 0 0 2.5em;
   }
   .top-section p {
-    line-height: 1.7em;
-    margin: 1.5em 0 0 0;
+    margin-top: 0.8em;
     font-size: 0.9em;
   }
   .top-section,
   .left-section,
   .right-section {
     width: 100%;
+    padding: 1em 2.5em 0 2.5em;
   }
   .right-section ul {
-    margin-bottom: 1.5em;
+    margin-top: 1em;
   }
   h1 {
-    font-size: 1.3em;
+    font-size: 1.6em;
+    margin-top: 1em;
   }
   h2 {
-    font-size: 0.9em;
-    margin-top: 2em;
+    font-size: 1.2em;
+    margin-top: 1.5em;
   }
   h3 {
-    font-size: 1.2em;
-    padding-top: 1em;
-  }
-  p {
-    line-height: 1.4em;
+    padding-top: 0.5em;
   }
   button {
-    width: 100%;
-    margin: 2em 0 1.2em 0;
-    font-size: 1em;
-    height: 3.3em;
-  }
-  footer {
-    display: none;
+    height: 3em;
   }
 }
