@@ -58,12 +58,12 @@ My work:
 
 - Semantic HTML5 markup
 - CSS custom properties
-- Flexbox
+- Grid
 - Mobile-first workflow
 
 ### What I learned
 
-This project allowed me to deepen my knowledge of flexbox and to improve my understanding and my method to applied the best for the responsive design.
+This project allowed me to deepen my knowledge of Flexbox and then Grid. Indeed, I did this project once with Flexbox then I did it again with Grid to deepen my skills in this last field. It also allowed me to improve my understanding and my method to applied the best for the responsive design.
 
 ## Author
 
